@@ -1,0 +1,65 @@
+/* YouTube Light Theme */
+.youtube-light {
+    /* YouTube Official Colors */
+    --background: oklch(1.00 0 0); /* Pure white #FFFFFF */
+    --foreground: oklch(0.11 0 0); /* Dark text #0F0F0F */
+    --card: oklch(1.00 0 0); /* White cards */
+    --card-foreground: oklch(0.11 0 0);
+    --popover: oklch(1.00 0 0);
+    --popover-foreground: oklch(0.11 0 0);
+    
+    /* YouTube Red as primary */
+    --primary: oklch(0.55 0.22 27.33); /* YouTube Red #FF0000 */
+    --primary-foreground: oklch(1.00 0 0); /* White text on red */
+    
+    --secondary: oklch(0.95 0 0); /* Light gray #F2F2F2 */
+    --secondary-foreground: oklch(0.11 0 0);
+    
+    --muted: oklch(0.96 0 0); /* Very light gray #F9F9F9 */
+    --muted-foreground: oklch(0.40 0 0); /* Medium gray #606060 */
+    
+    --accent: oklch(0.92 0 0); /* Light accent #E5E5E5 */
+    --accent-foreground: oklch(0.11 0 0);
+    
+    --destructive: oklch(0.55 0.22 27.33); /* YouTube Red for destructive actions */
+    --destructive-foreground: oklch(1.00 0 0);
+    
+    --border: oklch(0.89 0 0); /* Light border #E3E3E3 */
+    --input: oklch(0.96 0 0); /* Input background */
+    --ring: oklch(0.55 0.22 27.33); /* YouTube Red focus ring */
+    
+    /* Charts with YouTube-inspired colors */
+    --chart-1: oklch(0.55 0.22 27.33); /* YouTube Red */
+    --chart-2: oklch(0.40 0 0); /* Dark gray */
+    --chart-3: oklch(0.60 0 0); /* Medium gray */
+    --chart-4: oklch(0.80 0 0); /* Light gray */
+    --chart-5: oklch(0.90 0 0); /* Very light gray */
+    
+    /* Sidebar with YouTube styling */
+    --sidebar: oklch(1.00 0 0); /* White sidebar */
+    --sidebar-foreground: oklch(0.11 0 0);
+    --sidebar-primary: oklch(0.55 0.22 27.33); /* YouTube Red */
+    --sidebar-primary-foreground: oklch(1.00 0 0);
+    --sidebar-accent: oklch(0.92 0 0);
+    --sidebar-accent-foreground: oklch(0.11 0 0);
+    --sidebar-border: oklch(0.89 0 0);
+    --sidebar-ring: oklch(0.55 0.22 27.33);
+    
+    /* YouTube-style typography */
+    --font-sans: "YouTube Sans", "Roboto", -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-serif: Georgia, serif;
+    --font-mono: "SF Mono", Monaco, "Roboto Mono", monospace;
+    
+    /* YouTube-style radius */
+    --radius: 0.25rem; /* Slightly rounded like YouTube */
+    
+    /* YouTube-style shadows */
+    --shadow-2xs: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+    --shadow-xs: 0px 1px 3px 0px rgba(0, 0, 0, 0.1), 0px 1px 2px 0px rgba(0, 0, 0, 0.06);
+    --shadow-sm: 0px 1px 3px 0px rgba(0, 0, 0, 0.1), 0px 1px 2px 0px rgba(0, 0, 0, 0.06);
+    --shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.1), 0px 1px 2px 0px rgba(0, 0, 0, 0.06);
+    --shadow-md: 0px 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0px 10px 15px -3px rgba(0, 0, 0, 0.1), 0px 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0px 20px 25px -5px rgba(0, 0, 0, 0.1), 0px 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --shadow-2xl: 0px 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
