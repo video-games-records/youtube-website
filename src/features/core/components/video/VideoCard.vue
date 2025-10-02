@@ -29,7 +29,7 @@
         <div class="flex items-center space-x-1">
           <span>{{ formatViews(video.viewCount) }} views</span>
           <span>•</span>
-          <span>{{ formatTimeAgo(new Date()) }}</span>
+          <span>{{ formatTimeAgo(video.createdAt) }}</span>
         </div>
         
         <div v-if="video.game" class="text-xs">
@@ -43,6 +43,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import type { Video } from '@/features/core/types/video.types'
+import { useDateFormatter } from '@/shared/composables/useDateFormatter'
 
 interface Props {
   video: Video
@@ -52,6 +53,8 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   layout: 'horizontal'
 })
+
+const { formatDateRelative } = useDateFormatter()
 
 const layoutClasses = computed(() => {
   if (props.layout === 'vertical') return 'flex-col'
@@ -95,9 +98,9 @@ const formatDuration = (seconds: number): string => {
   return `${mins}:${secs.toString().padStart(2, '0')}`
 }
 
-// Format time ago (placeholder)
-const formatTimeAgo = (_date: Date): string => {
-  return '2 days ago' // Placeholder
+// Format time ago using the video's createdAt date
+const formatTimeAgo = (dateString: string): string => {
+  return formatDateRelative(dateString)
 }
 </script>
 

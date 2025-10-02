@@ -20,6 +20,7 @@ export default {
     ...coreTranslations,
     breadcrumb: {
         home: 'ホーム',
+        channels: 'チャンネル',
         games: 'ゲーム'
     },
     settings: {

@@ -21,6 +21,7 @@ export default {
     ...coreTranslations,
     menu: {
         home: '首页',
+        channels: '频道',
         inbox: '收件箱',
         calendar: '日历',
         search: '搜索',

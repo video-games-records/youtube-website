@@ -16,6 +16,7 @@ export interface Video {
     thumbnail: string
     viewCount: number
     slug: string
+    createdAt: string
     player?: Player
     game?: Game
 }
