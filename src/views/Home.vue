@@ -1,0 +1,54 @@
+<template>
+  <div class="space-y-6">
+    <div class="flex flex-col space-y-2">
+      <h2 class="text-2xl font-bold tracking-tight">{{ t('home.welcome') }}</h2>
+      <p class="text-muted-foreground">
+        {{ t('home.description') }}
+      </p>
+    </div>
+
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <Card>
+        <CardHeader>
+          <CardTitle>{{ t('home.features.feature1.title') }}</CardTitle>
+          <CardDescription>{{ t('home.features.feature1.description') }}</CardDescription>
+        </CardHeader>
+      </Card>
+      <Card>
+        <CardHeader>
+          <CardTitle>{{ t('home.features.feature2.title') }}</CardTitle>
+          <CardDescription>{{ t('home.features.feature2.description') }}</CardDescription>
+        </CardHeader>
+      </Card>
+      <Card>
+        <CardHeader>
+          <CardTitle>{{ t('home.features.feature2.title') }}</CardTitle>
+          <CardDescription>{{ t('home.features.feature2.description') }}</CardDescription>
+        </CardHeader>
+      </Card>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { computed } from 'vue'
+import { useI18n } from '@/core/i18n';
+import { useSEO } from '@/shared/composables/useSEO'
+import {
+  Card,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/shared/components/ui/card'
+
+const { t } = useI18n();
+
+// SEO Configuration for Home page
+const seoData = computed(() => ({
+  title: t('app.home.seo.title'),
+  description: t('app.home.seo.description'),
+  ogType: 'website'
+}))
+
+useSEO(seoData)
+</script>
