@@ -5,11 +5,12 @@ export default {
         login: 'Login',
         register: 'Register',
         profile: 'Profile',
+        myVideos: 'My Videos',
         settings: 'Settings',
         logout: 'Log out'
     },
     footer: {
-        copyright: '© 2025 My Application. All rights reserved.',
+        copyright: '© 2025 Video Games Records. All rights reserved.',
         legal: 'Legal Notice',
         privacy: 'Privacy Policy',
         terms: 'Terms of Service',
@@ -18,7 +19,7 @@ export default {
         about: 'About'
     },
     sidebar: {
-        title: 'Application',
+        title: 'VGR YouTube',
         links: {
             title: 'Useful Links',
         }

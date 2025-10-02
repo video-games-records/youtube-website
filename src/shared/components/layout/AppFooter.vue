@@ -44,13 +44,6 @@ const { t } = useI18n();
           {{ t('layout.footer.contact') }}
         </RouterLink>
 
-        <RouterLink
-            :to="{name: 'Rules'}"
-            class="hover:underline hover:text-foreground transition-colors"
-        >
-          {{ t('layout.footer.rules') }}
-        </RouterLink>
-
         <!-- Optional pages -->
         <RouterLink
             :to="{name: 'About'}"

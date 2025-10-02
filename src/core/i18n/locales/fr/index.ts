@@ -8,6 +8,7 @@ import authTranslations from '@/features/auth/i18n/locales/fr/index.ts'
 import pwaTranslations from '@/features/pwa/i18n/locales/fr/index.ts'
 import themeTranslations from '@/features/theme/i18n/locales/fr/index.ts'
 import languageTranslations from '@/features/language/i18n/fr/index.ts'
+import coreTranslations from '@/features/core/i18n/locales/fr/index.ts'
 
 export default {
     common,
@@ -18,6 +19,7 @@ export default {
     ...pwaTranslations,
     ...themeTranslations,
     ...languageTranslations,
+    ...coreTranslations,
     menu: {
         home: 'Accueil',
         inbox: 'Boîte de réception',

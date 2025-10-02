@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Home, HelpCircle, Shield, Eye, FileText, Mail, Heart, Scale, Video, TestTube, Smartphone } from "lucide-vue-next"
+import { Home, Users, ExternalLink } from "lucide-vue-next"
 import {
     Sidebar,
     SidebarContent,
@@ -13,11 +13,39 @@ import {
 import { useI18n } from '@/core/i18n'
 import { useSidebar } from '@/shared/components/ui/sidebar'
 import { useRouter } from 'vue-router'
-import { watch } from 'vue'
+import { watch, ref, onMounted } from 'vue'
+import PlayerService from '@/features/core/services/player.service'
+import PlayerAvatar from '@/features/core/components/player/PlayerAvatar.vue'
+import type { Player } from '@/features/core/types/player.types'
 
 const { t } = useI18n()
 const { setOpenMobile } = useSidebar()
 const router = useRouter()
+
+// Active channels state
+const activeChannels = ref<Player[]>([])
+
+/**
+ * Load active channels with 20+ videos
+ */
+const loadActiveChannels = async () => {
+  try {
+    const response = await PlayerService.getActiveChannels()
+    // Limit to first 8 channels for sidebar
+    activeChannels.value = response['hydra:member'].slice(0, 100)
+  } catch (error) {
+    console.error('Error loading active channels:', error)
+  }
+}
+
+/**
+ * Navigate to player profile
+ */
+const navigateToChannel = (player: Player) => {
+  const currentLang = router.currentRoute.value.params.lang as string
+  router.push(`/${currentLang}/player/${player.id}/${player.slug}`)
+  setOpenMobile(false) // Close mobile sidebar after navigation
+}
 
 /**
  * Watch for route changes and close mobile sidebar
@@ -25,6 +53,10 @@ const router = useRouter()
  */
 watch(() => router.currentRoute.value.path, () => {
     setOpenMobile(false)
+})
+
+onMounted(() => {
+  loadActiveChannels()
 })
 </script>
 
@@ -43,107 +75,39 @@ watch(() => router.currentRoute.value.path, () => {
                 </RouterLink>
               </SidebarMenuButton>
             </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild>
+                <a href="https://www.videogamesrecords.net/" target="_blank" rel="noopener noreferrer">
+                  <ExternalLink />
+                  <span>Video Games Records</span>
+                </a>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
           </SidebarMenu>
         </SidebarGroupContent>
       </SidebarGroup>
 
-      <!-- Development Components Section -->
+      <!-- Active Channels Section -->
       <SidebarGroup class="mt-6">
-        <SidebarGroupLabel>Development Components</SidebarGroupLabel>
+        <SidebarGroupLabel>
+          <Users class="w-4 h-4" />
+          {{ t('player.channels.active') }}
+        </SidebarGroupLabel>
         <SidebarGroupContent>
           <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton asChild>
-                <RouterLink :to="{name: 'QuillTest'}">
-                  <TestTube />
-                  <span>Quill Editor Test</span>
-                </RouterLink>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton asChild>
-                <RouterLink :to="{name: 'VideoPlayers'}">
-                  <Video />
-                  <span>Video Players Demo</span>
-                </RouterLink>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <RouterLink :to="{name: 'PwaSettings'}">
-                    <Smartphone />
-                      <span>PWA Settings</span>
-                  </RouterLink>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-          </SidebarMenu>
-        </SidebarGroupContent>
-      </SidebarGroup>
-
-      <!-- Section Liens utiles -->
-      <SidebarGroup class="mt-6">
-        <SidebarGroupLabel>{{ t('layout.sidebar.links.title') }}</SidebarGroupLabel>
-        <SidebarGroupContent>
-          <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton asChild>
-                <RouterLink :to="{name: 'Faq'}">
-                  <HelpCircle />
-                  <span>FAQ</span>
-                </RouterLink>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton asChild>
-                <RouterLink :to="{name: 'Rules'}">
-                  <Shield />
-                  <span>Rules</span>
-                </RouterLink>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton asChild>
-                <RouterLink :to="{name: 'Privacy'}">
-                  <Eye />
-                  <span>Privacy</span>
-                </RouterLink>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton asChild>
-                <RouterLink :to="{name: 'Terms'}">
-                  <FileText />
-                  <span>Terms</span>
-                </RouterLink>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton asChild>
-                <RouterLink :to="{name: 'Contact'}">
-                  <Mail />
-                  <span>Contact</span>
-                </RouterLink>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton asChild>
-                <RouterLink :to="{name: 'About'}">
-                  <Heart />
-                  <span>About</span>
-                </RouterLink>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton asChild>
-                <RouterLink :to="{name: 'Legal'}">
-                  <Scale />
-                  <span>Legal</span>
-                </RouterLink>
+            <SidebarMenuItem v-for="channel in activeChannels" :key="channel.id">
+              <SidebarMenuButton @click="navigateToChannel(channel)" class="cursor-pointer">
+                <PlayerAvatar :player="channel" class="w-5 h-5" />
+                <div class="flex flex-col items-start min-w-0 flex-1">
+                  <span class="text-sm font-medium truncate">{{ channel.pseudo }}</span>
+                  <span class="text-xs text-muted-foreground">{{ channel.nbVideo }} videos</span>
+                </div>
               </SidebarMenuButton>
             </SidebarMenuItem>
           </SidebarMenu>
         </SidebarGroupContent>
       </SidebarGroup>
+
     </SidebarContent>
   </Sidebar>
 </template>

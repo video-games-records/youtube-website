@@ -5,6 +5,7 @@ export default {
         login: 'ログイン',
         register: '新規登録',
         profile: 'プロフィール',
+        myVideos: 'マイビデオ',
         myProofs: 'マイ証明',
         team: 'マイチーム',
         friends: 'マイフレンド',
@@ -15,7 +16,7 @@ export default {
         logout: 'ログアウト'
     },
     footer: {
-        copyright: '© 2025 ビデオゲームレコード. すべての権利を保有.',
+        copyright: '© 2025 Video Games Records. すべての権利を保有.',
         legal: '法的通知',
         privacy: 'プライバシーポリシー',
         terms: '利用規約',

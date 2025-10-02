@@ -1,20 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
-import { useAuthStore } from '../../features/auth/stores/auth.ts'
+import { useAuthStore } from '@/features/auth/stores/auth.ts'
 import { useI18n, type SupportedLocale } from '@/core/i18n'
 
 // Import layouts
 import AppLayout from '@/shared/components/layout/AppLayout.vue'
 import ViewLayout from '@/shared/components/layout/ViewLayout.vue'
 
-// Import views
-import Home from '../../views/Home.vue'
-import Login from '../../features/auth/views/Login.vue'
-import Register from '../../features/auth/views/Register.vue'
-import Profile from '@/features/auth/views/Profile.vue'
-import ForgotPassword from '@/features/auth/views/ForgotPassword.vue'
-import ResetPassword from '@/features/auth/views/ResetPassword.vue'
-import NotFound from '@/views/NotFound.vue'
+// Import layouts
+// Views will be imported dynamically below
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -33,57 +27,48 @@ const routes: Array<RouteRecordRaw> = [
                     if (fullLang.startsWith('pt-br') || fullLang === 'pt-br') detectedLang = 'pt-br'
                     if (fullLang.startsWith('zh-cn') || fullLang === 'zh-cn' || fullLang === 'zh') detectedLang = 'zh-cn'
                     
-                    const supportedLocales = ['fr', 'en', 'ja', 'it', 'pt-br', 'zh-cn', 'es']
+                    const supportedLocales = ['fr', 'en', 'ja', 'it', 'pt-br', 'zh-cn', 'es', 'de']
                     const defaultLocale = savedLocale || (supportedLocales.includes(detectedLang) ? detectedLang : 'en')
                     return `/${defaultLocale}`
                 }
             },
             {
-                path: ':lang(fr|en|ja|it|pt-br|zh-cn|es)',
+                path: ':lang(fr|en|ja|it|pt-br|zh-cn|es|de)',
                 component: ViewLayout,
                 children: [
                     {
                         path: '',
                         name: 'Home',
-                        component: Home
-                    },
-                    {
-                        path: 'pwa-settings',
-                        name: 'PwaSettings',
-                        component: () => import(/* webpackChunkName: "pwa" */ '@/views/PWASettings.vue'),
-                        meta: {
-                            title: 'PWA Settings',
-                            requiresAuth: false
-                        }
+                        component: () => import(/* webpackChunkName: "home" */ '../../views/Home.vue')
                     },
                     {
                         path: 'login',
                         name: 'Login',
-                        component: Login,
+                        component: () => import(/* webpackChunkName: "auth" */ '../../features/auth/views/Login.vue'),
                         meta: { guest: true }
                     },
                     {
                         path: 'register',
                         name: 'Register',
-                        component: Register,
+                        component: () => import(/* webpackChunkName: "auth" */ '../../features/auth/views/Register.vue'),
                         meta: { guest: true }
                     },
                     {
                         path: 'forgot-password',
                         name: 'ForgotPassword',
-                        component: ForgotPassword,
+                        component: () => import(/* webpackChunkName: "auth" */ '@/features/auth/views/ForgotPassword.vue'),
                         meta: { guest: true }
                     },
                     {
                         path: 'reset-password',
                         name: 'ResetPassword',
-                        component: ResetPassword,
+                        component: () => import(/* webpackChunkName: "auth" */ '@/features/auth/views/ResetPassword.vue'),
                         meta: { guest: true }
                     },
                     {
                         path: 'profile',
                         name: 'Profile',
-                        component: Profile,
+                        component: () => import(/* webpackChunkName: "auth" */ '@/features/auth/views/Profile.vue'),
                         meta: { requiresAuth: true }
                     },
                     {
@@ -96,83 +81,87 @@ const routes: Array<RouteRecordRaw> = [
                         }
                     },
                     {
-                        path: 'quill-test',
-                        name: 'QuillTest',
-                        component: () => import(/* webpackChunkName: "editor-test" */ '@/views/QuillTest.vue'),
-                        meta: {
-                            title: 'Quill Test',
-                            requiresAuth: false // Accessible à tous pour les tests
-                        }
-                    },
-                    {
-                        path: 'video-players',
-                        name: 'VideoPlayers',
-                        component: () => import(/* webpackChunkName: "video-demo" */ '@/views/VideoPlayerDemo.vue'),
-                        meta: {
-                            title: 'Video Players Demo',
-                            requiresAuth: false
-                        }
-                    },
-                    {
-                        path: 'faq',
-                        name: 'Faq',
-                        component: () => import(/* webpackChunkName: "faq" */ '@/views/FAQ.vue'),
-                        meta: {
-                            title: 'FAQ'
+                        path: 'privacy',
+                        name: 'Privacy',
+                        beforeEnter: (to) => {
+                            const lang = to.params.lang as string
+                            window.open(`https://www.videogamesrecords.net/${lang}/privacy`, '_blank')
+                            return false
                         }
                     },
                     {
                         path: 'rules',
                         name: 'Rules',
-                        component: () => import(/* webpackChunkName: "rules" */ '@/views/Rules.vue'),
-                        meta: {
-                            title: 'Community Rules'
-                        }
-                    },
-                    {
-                        path: 'privacy',
-                        name: 'Privacy',
-                        component: () => import(/* webpackChunkName: "privacy" */ '@/views/Privacy.vue'),
-                        meta: {
-                            title: 'Privacy Policy'
+                        beforeEnter: (to) => {
+                            const lang = to.params.lang as string
+                            window.open(`https://www.videogamesrecords.net/${lang}/rules`, '_blank')
+                            return false
                         }
                     },
                     {
                         path: 'terms',
                         name: 'Terms',
-                        component: () => import(/* webpackChunkName: "terms" */ '@/views/Terms.vue'),
-                        meta: {
-                            title: 'Terms of Service'
+                        beforeEnter: (to) => {
+                            const lang = to.params.lang as string
+                            window.open(`https://www.videogamesrecords.net/${lang}/terms`, '_blank')
+                            return false
                         }
                     },
                     {
                         path: 'contact',
                         name: 'Contact',
-                        component: () => import(/* webpackChunkName: "contact" */ '@/views/Contact.vue'),
-                        meta: {
-                            title: 'Contact Us'
+                        beforeEnter: (to) => {
+                            const lang = to.params.lang as string
+                            window.open(`https://www.videogamesrecords.net/${lang}/contact`, '_blank')
+                            return false
                         }
                     },
                     {
                         path: 'about',
                         name: 'About',
-                        component: () => import(/* webpackChunkName: "about" */ '@/views/About.vue'),
-                        meta: {
-                            title: 'About Us'
+                        beforeEnter: (to) => {
+                            const lang = to.params.lang as string
+                            window.open(`https://www.videogamesrecords.net/${lang}/about`, '_blank')
+                            return false
                         }
                     },
                     {
                         path: 'legal',
                         name: 'Legal',
-                        component: () => import(/* webpackChunkName: "legal" */ '@/views/Legal.vue'),
+                        beforeEnter: (to) => {
+                            const lang = to.params.lang as string
+                            window.open(`https://www.videogamesrecords.net/${lang}/legal`, '_blank')
+                            return false
+                        }
+                    },
+                    {
+                        path: 'player/:id(\\d+)/:slug?',
+                        name: 'UserProfile',
+                        component: () => import(/* webpackChunkName: "core" */ '@/features/core/views/UserProfile.vue'),
                         meta: {
-                            title: 'Legal Notice'
+                            title: 'Player Profile'
+                        }
+                    },
+                    {
+                        path: 'video/:id(\\d+)/:slug?',
+                        name: 'VideoIndex',
+                        component: () => import(/* webpackChunkName: "core" */ '@/features/core/views/VideoIndex.vue'),
+                        meta: {
+                            title: 'Video'
+                        }
+                    },
+                    {
+                        path: 'search',
+                        name: 'SearchResults',
+                        component: () => import(/* webpackChunkName: "core" */ '@/features/core/views/SearchResults.vue'),
+                        meta: {
+                            title: 'Search Results'
                         }
                     },
                     {
                         path: ':pathMatch(.*)*',
                         name: 'NotFound',
-                        component: NotFound
+                        component: () => import(/* webpackChunkName: "errors" */ '@/views/NotFound.vue')
                     }
                 ]
             }
@@ -196,7 +185,7 @@ router.beforeEach((to, _from, next) => {
     const lang = to.params.lang as SupportedLocale
 
     // If we have a language in the route, sync it with i18n
-    if (lang && ['fr', 'en', 'ja', 'it', 'pt-br', 'zh-cn', 'es'].includes(lang)) {
+    if (lang && ['fr', 'en', 'ja', 'it', 'pt-br', 'zh-cn', 'es', 'de'].includes(lang)) {
         setLocale(lang)
     }
 

@@ -5,11 +5,12 @@ export default {
         login: 'Iniciar sesión',
         register: 'Registrarse',
         profile: 'Perfil',
+        myVideos: 'Mis Videos',
         settings: 'Configuración',
         logout: 'Cerrar sesión'
     },
     footer: {
-        copyright: '© 2025 Mi aplicación. Todos los derechos reservados.',
+        copyright: '© 2025 Video Games Records. Todos los derechos reservados.',
         legal: 'Aviso legal',
         privacy: 'Política de privacidad',
         terms: 'Términos de servicio',
