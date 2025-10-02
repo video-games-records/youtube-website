@@ -1,6 +1,6 @@
 // src/features/theme/composables/useThemes.ts
 import type { Component } from 'vue'
-import { Sun, Moon } from 'lucide-vue-next'
+import { Sun, Moon, Play } from 'lucide-vue-next'
 import { useI18n } from '@/core/i18n'
 
 export interface Theme {
@@ -14,7 +14,7 @@ export interface Theme {
 export function useThemes() {
   const { t } = useI18n()
 
-  // Thèmes disponibles (light et dark uniquement)
+  // Thèmes disponibles
   const allThemes: Theme[] = [
     {
       id: 'light',
@@ -27,6 +27,20 @@ export function useThemes() {
       name: t('theme.selector.themes.dark.name'),
       icon: Moon,
       description: t('theme.selector.themes.dark.description'),
+    },
+    {
+      id: 'youtube-light',
+      name: t('theme.selector.themes.youtubeLight.name'),
+      icon: Play,
+      description: t('theme.selector.themes.youtubeLight.description'),
+      className: 'youtube-light'
+    },
+    {
+      id: 'youtube-dark',
+      name: t('theme.selector.themes.youtubeDark.name'),
+      icon: Play,
+      description: t('theme.selector.themes.youtubeDark.description'),
+      className: 'youtube-dark'
     }
   ]
 
@@ -42,13 +56,14 @@ export function useThemes() {
       }
     })
     
+    // Supprimer la classe dark par défaut
+    htmlElement.classList.remove('dark')
+    
     // Appliquer le nouveau thème
     if (theme.className) {
       htmlElement.classList.add(theme.className)
     } else if (theme.id === 'dark') {
       htmlElement.classList.add('dark')
-    } else {
-      htmlElement.classList.remove('dark')
     }
     
     localStorage.setItem('selectedTheme', theme.id)

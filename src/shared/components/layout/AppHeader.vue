@@ -6,7 +6,7 @@ import { useAuthStore } from '@/features/auth/stores/auth.ts';
 import { SidebarTrigger } from '@/shared/components/ui/sidebar';
 import LanguageSelector from '@/features/language/components/LanguageSelector.vue';
 import { useI18n } from '@/core/i18n';
-import ThemeSwitcher from "@/features/theme/components/ThemeSwitcher.vue";
+import ThemeSelector from "@/features/theme/components/ThemeSelector.vue";
 import UserAvatar from '@/features/auth/components/UserAvatar.vue';
 import SearchBar from '@/features/core/components/search/SearchBar.vue';
 
@@ -130,7 +130,7 @@ onUnmounted(() => {
 
           <!-- Language Selector -->
           <LanguageSelector />
-          <ThemeSwitcher />
+          <ThemeSelector />
 
           <!-- Login link when user is not authenticated -->
           <RouterLink

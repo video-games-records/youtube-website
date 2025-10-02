@@ -1,0 +1,11 @@
+/* src/assets/themes/themes.css */
+/* Import des thèmes organisés par catégorie */
+
+/* === THÈMES PAR DÉFAUT === */
+@import "./default/light.css";
+@import "./default/dark.css";
+
+/* === THÈMES YOUTUBE === */
+@import "./youtube/light.css";
+@import "./youtube/dark.css";
+

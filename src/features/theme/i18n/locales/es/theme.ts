@@ -11,6 +11,14 @@ export const theme = {
         name: 'Oscuro', 
         description: 'Tema oscuro'
       },
+      youtubeLight: {
+        name: 'YouTube Claro',
+        description: 'Estilo oficial de YouTube claro'
+      },
+      youtubeDark: {
+        name: 'YouTube Oscuro',
+        description: 'Estilo oficial de YouTube oscuro'
+      },
       'official-vgr': {
         name: 'VGR Oficial',
         description: 'La experiencia clásica de VGR'

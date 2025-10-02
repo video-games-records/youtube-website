@@ -11,6 +11,14 @@ export default {
         name: 'Sombre', 
         description: 'Thème sombre'
       },
+      youtubeLight: {
+        name: 'YouTube Clair',
+        description: 'Style YouTube officiel clair'
+      },
+      youtubeDark: {
+        name: 'YouTube Sombre',
+        description: 'Style YouTube officiel sombre'
+      },
       'official-vgr': {
         name: 'VGR Officiel',
         description: 'L\'expérience VGR classique'
