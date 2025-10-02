@@ -27,14 +27,18 @@ class PlayerService {
     async getPlayers(filters: PlayerFilters = {}): Promise<PlayerCollectionResponse> {
         const params: Record<string, unknown> = {
             pagination: true,
-            itemsPerPage: 100,
-            'order[pseudo]': 'ASC'
+            itemsPerPage: 100
         }
 
+        if (filters.pagination !== undefined) params.pagination = filters.pagination
         if (filters.page) params.page = filters.page
         if (filters.itemsPerPage) params.itemsPerPage = filters.itemsPerPage
         if (filters.search) params.search = filters.search
-        if (filters.sortBy) params[`order[${filters.sortBy}]`] = filters.sortOrder || 'ASC'
+        if (filters.sortBy) {
+            params[`order[${filters.sortBy}]`] = filters.sortOrder || 'ASC'
+        } else {
+            params['order[pseudo]'] = 'ASC'
+        }
         if (filters.nbVideoMin) params['nbVideo[gte]'] = filters.nbVideoMin
 
         const response = await apiClient.get<PlayerCollectionResponse>('/api/players', {params})

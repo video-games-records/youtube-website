@@ -22,6 +22,7 @@ export default {
     ...coreTranslations,
     menu: {
         home: 'Accueil',
+        channels: 'Chaînes',
         inbox: 'Boîte de réception',
         calendar: 'Calendrier',
         search: 'Recherche',

@@ -159,6 +159,14 @@ const routes: Array<RouteRecordRaw> = [
                         }
                     },
                     {
+                        path: 'channels',
+                        name: 'Channels',
+                        component: () => import(/* webpackChunkName: "core" */ '@/features/core/views/Channels.vue'),
+                        meta: {
+                            title: 'Channels'
+                        }
+                    },
+                    {
                         path: ':pathMatch(.*)*',
                         name: 'NotFound',
                         component: () => import(/* webpackChunkName: "errors" */ '@/views/NotFound.vue')

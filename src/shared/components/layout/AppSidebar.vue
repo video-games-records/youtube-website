@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Home, Users, ExternalLink } from "lucide-vue-next"
+import { Home, Users, ExternalLink, Play } from "lucide-vue-next"
 import {
     Sidebar,
     SidebarContent,
@@ -72,6 +72,14 @@ onMounted(() => {
                 <RouterLink :to="{name: 'Home'}">
                   <Home />
                   <span>{{ t('menu.home') }}</span>
+                </RouterLink>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild>
+                <RouterLink :to="{name: 'Channels'}">
+                  <Play />
+                  <span>{{ t('menu.channels') }}</span>
                 </RouterLink>
               </SidebarMenuButton>
             </SidebarMenuItem>
