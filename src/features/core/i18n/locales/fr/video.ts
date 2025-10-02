@@ -1,0 +1,10 @@
+// src/features/core/i18n/locales/fr/video.ts
+
+export default {
+    views: 'vues',
+    relatedVideos: 'Vidéos Connexes',
+    moreVideosFrom: 'Plus de vidéos de',
+    loadingVideo: 'Chargement de la vidéo...',
+    videoNotFound: 'Vidéo non trouvée',
+    description: 'Description'
+}

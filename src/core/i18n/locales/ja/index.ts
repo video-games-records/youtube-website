@@ -6,6 +6,7 @@ import pwaTranslations from '@/features/pwa/i18n/locales/ja/index.ts'
 import authTranslations from '@/features/auth/i18n/locales/ja/index.ts'
 import themeTranslations from '@/features/theme/i18n/locales/ja/index.ts'
 import languageTranslations from '@/features/language/i18n/ja/index.ts'
+import coreTranslations from '@/features/core/i18n/locales/ja/index.ts'
 
 export default {
     app,
@@ -16,6 +17,7 @@ export default {
     ...authTranslations,
     ...themeTranslations,
     ...languageTranslations,
+    ...coreTranslations,
     breadcrumb: {
         home: 'ホーム',
         games: 'ゲーム'

@@ -5,11 +5,12 @@ export default {
         login: '登录',
         register: '注册',
         profile: '个人资料',
+        myVideos: '我的视频',
         settings: '设置',
         logout: '退出'
     },
     footer: {
-        copyright: '© 2025 我的应用程序。保留所有权利。',
+        copyright: '© 2025 Video Games Records.保留所有权利。',
         legal: '法律声明',
         privacy: '隐私政策',
         terms: '服务条款',

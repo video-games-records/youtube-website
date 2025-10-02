@@ -11,9 +11,10 @@ import es from './locales/es'
 import ja from './locales/ja'
 import ptBr from './locales/pt-br'
 import zhCn from './locales/zh-cn'
+import de from './locales/de'
 
 // Define supported locales
-export type SupportedLocale = 'en' | 'fr' | 'it' | 'es' | 'ja' | 'pt-br' | 'zh-cn'
+export type SupportedLocale = 'en' | 'fr' | 'it' | 'es' | 'ja' | 'pt-br' | 'zh-cn' | 'de'
 
 // Available locales with display names
 export const availableLocales: Record<SupportedLocale, string> = {
@@ -23,7 +24,8 @@ export const availableLocales: Record<SupportedLocale, string> = {
     es: 'Español',
     ja: '日本語',
     'pt-br': 'Português (Brasil)',
-    'zh-cn': '简体中文'
+    'zh-cn': '简体中文',
+    de: 'Deutsch'
 }
 
 // Get browser language or fallback
@@ -36,7 +38,7 @@ const getBrowserLanguage = (): SupportedLocale => {
     if (fullLang.startsWith('zh-cn') || fullLang === 'zh-cn' || fullLang === 'zh') return 'zh-cn'
     
     // Check if the base language is supported
-    const supportedLangs: SupportedLocale[] = ['en', 'fr', 'it', 'es', 'ja', 'pt-br', 'zh-cn']
+    const supportedLangs: SupportedLocale[] = ['en', 'fr', 'it', 'es', 'ja', 'pt-br', 'zh-cn', 'de']
     return supportedLangs.includes(browserLang as SupportedLocale) 
         ? (browserLang as SupportedLocale) 
         : 'en'
@@ -48,7 +50,7 @@ const getInitialLocale = (): SupportedLocale => {
     const pathSegments = window.location.pathname.split('/')
     const urlLang = pathSegments[1] as SupportedLocale
 
-    if (['fr', 'en', 'it', 'es', 'ja', 'pt-br', 'zh-cn'].includes(urlLang)) {
+    if (['fr', 'en', 'it', 'es', 'ja', 'pt-br', 'zh-cn', 'de'].includes(urlLang)) {
         return urlLang
     }
 
@@ -62,7 +64,7 @@ const i18n = createI18n({
     legacy: false,
     locale: getInitialLocale(),
     fallbackLocale: 'en',
-    messages: { en, fr, it, es, ja, 'pt-br': ptBr, 'zh-cn': zhCn },
+    messages: { en, fr, it, es, ja, 'pt-br': ptBr, 'zh-cn': zhCn, de },
     missingWarn: import.meta.env.DEV,
     fallbackWarn: import.meta.env.DEV,
     datetimeFormats: {
@@ -163,6 +165,20 @@ const i18n = createI18n({
                 hour: '2-digit',
                 minute: '2-digit'
             }
+        },
+        de: {
+            short: {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+            },
+            long: {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            }
         }
     },
     numberFormats: {
@@ -193,6 +209,10 @@ const i18n = createI18n({
         'zh-cn': {
             currency: { style: 'currency', currency: 'CNY' },
             decimal: { style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2 }
+        },
+        de: {
+            currency: { style: 'currency', currency: 'EUR' },
+            decimal: { style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2 }
         }
     }
 })
@@ -220,7 +240,7 @@ export function useI18n() {
     const getCurrentLocaleFromRoute = (): SupportedLocale => {
         const pathSegments = window.location.pathname.split('/')
         const urlLang = pathSegments[1] as SupportedLocale
-        return (['fr', 'en', 'it', 'es', 'ja', 'pt-br', 'zh-cn'].includes(urlLang)) ? urlLang : locale.value
+        return (['fr', 'en', 'it', 'es', 'ja', 'pt-br', 'zh-cn', 'de'].includes(urlLang)) ? urlLang : locale.value
     }
 
     return {
