@@ -167,6 +167,35 @@ const routes: Array<RouteRecordRaw> = [
                         }
                     },
                     {
+                        path: 'dashboard',
+                        component: () => import(/* webpackChunkName: "dashboard" */ '@/features/core/views/dashboard/DashboardMain.vue'),
+                        meta: {
+                            requiresAuth: true
+                        },
+                        children: [
+                            {
+                                path: '',
+                                redirect: 'index'
+                            },
+                            {
+                                path: 'index',
+                                name: 'DashboardIndex',
+                                component: () => import(/* webpackChunkName: "dashboard" */ '@/features/core/views/dashboard/DashboardIndex.vue'),
+                                meta: {
+                                    title: 'Dashboard'
+                                }
+                            },
+                            {
+                                path: 'videos',
+                                name: 'DashboardVideos',
+                                component: () => import(/* webpackChunkName: "dashboard" */ '@/features/core/views/dashboard/VideosList.vue'),
+                                meta: {
+                                    title: 'Mes Vidéos'
+                                }
+                            }
+                        ]
+                    },
+                    {
                         path: ':pathMatch(.*)*',
                         name: 'NotFound',
                         component: () => import(/* webpackChunkName: "errors" */ '@/views/NotFound.vue')

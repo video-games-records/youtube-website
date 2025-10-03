@@ -43,6 +43,14 @@ class VideoService {
         return response.data
     }
 
+    /**
+     * Crée une nouvelle vidéo
+     */
+    async createVideo(url: string): Promise<Video> {
+        const response = await apiClient.post<Video>('/api/videos', { url })
+        return response.data
+    }
+
 }
 
 export default new VideoService()

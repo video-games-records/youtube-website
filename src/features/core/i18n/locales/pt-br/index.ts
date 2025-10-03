@@ -5,11 +5,13 @@ import video from './video'
 import home from './home'
 import search from './search'
 import channels from './channels'
+import dashboard from './dashboard'
 
 export default {
     player,
     video,
     home,
     search,
-    channels
+    channels,
+    dashboard
 }
