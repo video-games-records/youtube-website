@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Home, Users, ExternalLink, Play } from "lucide-vue-next"
+import { Home, Users, ExternalLink, Play, BarChart3 } from "lucide-vue-next"
 import {
     Sidebar,
     SidebarContent,
@@ -12,8 +12,9 @@ import {
 } from "@/shared/components/ui/sidebar"
 import { useI18n } from '@/core/i18n'
 import { useSidebar } from '@/shared/components/ui/sidebar'
-import { useRouter } from 'vue-router'
-import { watch, ref, onMounted } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
+import { watch, ref, onMounted, computed } from 'vue'
+import { useAuthStore } from '@/features/auth/stores/auth'
 import PlayerService from '@/features/core/services/player.service'
 import PlayerAvatar from '@/features/core/components/player/PlayerAvatar.vue'
 import type { Player } from '@/features/core/types/player.types'
@@ -21,9 +22,16 @@ import type { Player } from '@/features/core/types/player.types'
 const { t } = useI18n()
 const { setOpenMobile } = useSidebar()
 const router = useRouter()
+const route = useRoute()
+const authStore = useAuthStore()
 
 // Active channels state
 const activeChannels = ref<Player[]>([])
+
+// Check if we're in dashboard area
+const isDashboard = computed(() => {
+  return route.path.includes('/dashboard')
+})
 
 /**
  * Load active channels with 20+ videos
@@ -95,8 +103,36 @@ onMounted(() => {
         </SidebarGroupContent>
       </SidebarGroup>
 
-      <!-- Active Channels Section -->
-      <SidebarGroup class="mt-6">
+      <!-- Dashboard Section (when in dashboard) -->
+      <SidebarGroup v-if="isDashboard && authStore.isAuthenticated" class="mt-6">
+        <SidebarGroupLabel>
+          <BarChart3 class="w-4 h-4" />
+          {{ t('dashboard.title') }}
+        </SidebarGroupLabel>
+        <SidebarGroupContent>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild>
+                <RouterLink :to="{name: 'DashboardIndex'}">
+                  <Home class="w-4 h-4" />
+                  <span>{{ t('dashboard.menu.overview') }}</span>
+                </RouterLink>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild>
+                <RouterLink :to="{name: 'DashboardVideos'}">
+                  <Play class="w-4 h-4" />
+                  <span>{{ t('dashboard.menu.content') }}</span>
+                </RouterLink>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </SidebarGroupContent>
+      </SidebarGroup>
+
+      <!-- Active Channels Section (when NOT in dashboard) -->
+      <SidebarGroup v-else class="mt-6">
         <SidebarGroupLabel>
           <Users class="w-4 h-4" />
           {{ t('player.channels.active') }}
