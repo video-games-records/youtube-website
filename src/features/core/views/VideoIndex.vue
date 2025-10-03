@@ -54,6 +54,9 @@
             </div>
           </div>
         </div>
+        
+        <!-- Video Comments -->
+        <VideoComments :video-id="video.id" />
       </div>
       
       <!-- Sidebar (Right side) -->
@@ -91,6 +94,7 @@ import PlayerAvatar from '@/features/core/components/player/PlayerAvatar.vue'
 import PlayerLink from '@/features/core/components/player/PlayerLink.vue'
 import VideoPlayer from '@/shared/components/media/VideoPlayer.vue'
 import VideoCard from '@/features/core/components/video/VideoCard.vue'
+import VideoComments from '@/features/core/components/video/VideoComments.vue'
 import type { Video } from '@/features/core/types/video.types'
 import VideoSidebarAd from '@/features/adsense/components/bloc/VideoSidebarAd.vue'
 

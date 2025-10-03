@@ -27,6 +27,24 @@ class GameService {
         const response = await apiClient.get<VideoCollectionResponse>(`/api/games/${gameId}/videos`, {params})
         return response.data
     }
+
+    /**
+     * Search games for autocomplete
+     * @param query Search query
+     * @returns Promise with games collection for autocomplete
+     */
+    async getGamesAutocomplete(query: string): Promise<{ 'hydra:member': Game[], 'hydra:totalItems': number }> {
+        const params: Record<string, string> = {}
+
+        if (query && query.trim()) {
+            params.query = query.trim()
+        }
+
+        const response = await apiClient.get<{ 'hydra:member': Game[], 'hydra:totalItems': number }>('/api/games/autocomplete', {
+            params
+        })
+        return response.data
+    }
 }
 
 export default new GameService()
