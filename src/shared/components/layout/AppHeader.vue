@@ -154,13 +154,13 @@ onUnmounted(() => {
             <!-- Dropdown menu -->
             <div
                 v-if="showDropdown"
-                class="absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white dark:bg-gray-800 border"
+                class="absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-popover border border-border text-popover-foreground"
             >
               <div class="p-2">
-                <div class="px-4 py-2 border-b flex items-center gap-3">
+                <div class="px-4 py-2 border-b border-border flex items-center gap-3">
                   <UserAvatar size="sm" />
                   <div>
-                    <p class="font-medium">{{ userDisplayName }}</p>
+                    <p class="font-medium text-popover-foreground">{{ userDisplayName }}</p>
                     <p class="text-xs text-muted-foreground">{{ userSubtitle }}</p>
                   </div>
                 </div>
@@ -168,7 +168,7 @@ onUnmounted(() => {
                 <div class="py-1">
                   <RouterLink
                       :to="{name: 'Profile'}"
-                      class="flex items-center gap-2 px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md"
+                      class="flex items-center gap-2 px-4 py-2 text-sm text-popover-foreground hover:bg-accent hover:text-accent-foreground rounded-md"
                       @click="showDropdown = false"
                   >
                     <User class="h-4 w-4" />
@@ -178,7 +178,7 @@ onUnmounted(() => {
 
                   <RouterLink
                       :to="{ name: 'UserProfile', params: { lang: route.params.lang, id: authStore.user?.id, slug: authStore.user?.slug } }"
-                      class="flex items-center gap-2 px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md"
+                      class="flex items-center gap-2 px-4 py-2 text-sm text-popover-foreground hover:bg-accent hover:text-accent-foreground rounded-md"
                       @click="showDropdown = false"
                   >
                     <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -190,10 +190,10 @@ onUnmounted(() => {
 
                 </div>
 
-                <div class="py-1 border-t">
+                <div class="py-1 border-t border-border">
                   <button
                       @click="handleLogout"
-                      class="flex w-full items-center gap-2 px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md text-left"
+                      class="flex w-full items-center gap-2 px-4 py-2 text-sm text-popover-foreground hover:bg-accent hover:text-accent-foreground rounded-md text-left"
                   >
                     <span>{{ t('layout.header.logout') }}</span>
                     <span class="ml-auto text-xs text-muted-foreground">⌘⇧Q</span>
