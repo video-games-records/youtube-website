@@ -72,6 +72,9 @@
             @click="navigateToVideo(relatedVideo)"
           />
         </div>
+        
+        <!-- Video Sidebar Ad -->
+        <VideoSidebarAd sticky />
       </div>
     </div>
   </div>
@@ -89,6 +92,7 @@ import PlayerLink from '@/features/core/components/player/PlayerLink.vue'
 import VideoPlayer from '@/shared/components/media/VideoPlayer.vue'
 import VideoCard from '@/features/core/components/video/VideoCard.vue'
 import type { Video } from '@/features/core/types/video.types'
+import VideoSidebarAd from '@/features/adsense/components/bloc/VideoSidebarAd.vue'
 
 const route = useRoute()
 const router = useRouter()
