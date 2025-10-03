@@ -48,3 +48,4 @@ export interface VideoFilters {
     sortOrder?: 'asc' | 'desc'
     isActive?: number
 }
+
