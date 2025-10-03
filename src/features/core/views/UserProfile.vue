@@ -38,6 +38,9 @@
         </div>
       </div>
 
+      <!-- Channel Banner Ad -->
+      <ChannelBannerAd class="mb-6" />
+
       <!-- Player Videos -->
       <div class="space-y-4">
         <div class="flex items-center justify-between">
@@ -90,6 +93,7 @@ import VideoCard from '@/features/core/components/video/VideoCard.vue'
 import PlayerService from '@/features/core/services/player.service'
 import type { Player } from '@/features/core/types/player.types'
 import type { Video } from '@/features/core/types/video.types'
+import ChannelBannerAd from '@/features/adsense/components/bloc/ChannelBannerAd.vue'
 
 const route = useRoute()
 const router = useRouter()

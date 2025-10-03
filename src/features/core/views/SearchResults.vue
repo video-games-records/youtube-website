@@ -10,6 +10,9 @@
       </p>
     </div>
 
+    <!-- Search Banner Ad -->
+    <SearchBannerAd class="mb-6" />
+
     <!-- Loading State -->
     <div v-if="loading" class="flex justify-center items-center h-64">
       <div class="animate-spin rounded-full h-32 w-32 border-b-2 border-gray-900"></div>
@@ -60,6 +63,7 @@ import { useI18n } from '@/core/i18n'
 import VideoService from '@/features/core/services/video.service'
 import VideoCard from '@/features/core/components/video/VideoCard.vue'
 import type { Video } from '@/features/core/types/video.types'
+import SearchBannerAd from '@/features/adsense/components/bloc/SearchBannerAd.vue'
 
 const route = useRoute()
 const router = useRouter()

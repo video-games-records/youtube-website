@@ -11,6 +11,8 @@ import axiosInterceptor from '@/core/plugins/axios-interceptor'
 import authDirective from '@/features/auth/directives/auth.directive'
 import pwaPlugin from './features/pwa/plugins/pwa.ts'
 
+// Import des modules
+import adsensePlugin from '@/features/adsense/plugins'
 
 const head = createHead()
 
@@ -26,6 +28,11 @@ const app = createApp(App)
     // Authorization directive
     .use(authDirective)
     .use(pwaPlugin)
+    .use(adsensePlugin, {
+        clientId: import.meta.env.VITE_ADSENSE_CLIENT_ID || '',
+        enabled: import.meta.env.VITE_ADSENSE_ENABLED === 'true',
+        testMode: import.meta.env.DEV
+    })
 
 // Setup Axios interceptors
 axiosInterceptor.setup()

@@ -1,5 +1,8 @@
 <template>
   <div class="px-6 py-4">
+    <!-- Home Banner Ad -->
+    <HomeBannerdAd class="mb-6" />
+    
     <!-- Videos Grid -->
     <div v-if="loading" class="flex justify-center items-center h-64">
       <div class="animate-spin rounded-full h-32 w-32 border-b-2 border-gray-900"></div>
@@ -107,6 +110,7 @@ import { useSEO } from '@/shared/composables/useSEO'
 import VideoCard from '@/features/core/components/video/VideoCard.vue'
 import VideoService from '@/features/core/services/video.service'
 import type { Video } from '@/features/core/types/video.types'
+import HomeBannerdAd from '@/features/adsense/components/bloc/HomeBannerdAd.vue'
 
 const { t } = useI18n();
 const router = useRouter()
