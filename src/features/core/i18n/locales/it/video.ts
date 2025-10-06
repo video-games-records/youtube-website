@@ -6,5 +6,10 @@ export default {
     moreVideosFrom: 'Altri video di',
     loadingVideo: 'Caricamento video...',
     videoNotFound: 'Video non trovato',
-    description: 'Descrizione'
+    description: 'Descrizione',
+    comments: 'Commenti',
+    addComment: 'Aggiungi un commento',
+    commentPlaceholder: 'Scrivi il tuo commento...',
+    postComment: 'Pubblica',
+    noComments: 'Nessun commento ancora'
 }

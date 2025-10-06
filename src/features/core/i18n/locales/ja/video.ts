@@ -6,5 +6,10 @@ export default {
     moreVideosFrom: 'このゲームの他の動画',
     loadingVideo: '動画を読み込み中...',
     videoNotFound: '動画が見つかりません',
-    description: '説明'
+    description: '説明',
+    comments: 'コメント',
+    addComment: 'コメントを追加',
+    commentPlaceholder: 'コメントを入力...',
+    postComment: '投稿',
+    noComments: 'まだコメントはありません'
 }

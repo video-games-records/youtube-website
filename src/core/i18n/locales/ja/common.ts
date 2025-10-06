@@ -29,4 +29,5 @@ export default {
     limit: '制限',
     showMore: 'もっと見る',
     showLess: '少なく表示',
+    submitting: '送信中...',
 }

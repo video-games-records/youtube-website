@@ -2,6 +2,9 @@
   <div class="space-y-4">
     <h3 class="text-lg font-semibold">{{ t('video.comments') }}</h3>
     
+    <!-- Comment Form -->
+    <CommentForm :video-id="videoId" @comment-added="handleCommentAdded" />
+    
     <div v-if="loading" class="flex justify-center py-8">
       <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
     </div>
@@ -42,6 +45,7 @@ import { useDateFormatter } from '@/shared/composables/useDateFormatter'
 import VideoService from '@/features/core/services/video.service'
 import PlayerAvatar from '@/features/core/components/player/PlayerAvatar.vue'
 import PlayerLink from '@/features/core/components/player/PlayerLink.vue'
+import CommentForm from './CommentForm.vue'
 import type { Comment } from '@/features/core/types/video-comment.types'
 
 interface Props {
@@ -71,6 +75,10 @@ const loadComments = async () => {
   } finally {
     loading.value = false
   }
+}
+
+const handleCommentAdded = () => {
+  loadComments()
 }
 
 watch(() => props.videoId, (newVideoId) => {
