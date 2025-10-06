@@ -29,4 +29,5 @@ export default {
     limit: '限制',
     showMore: '显示更多',
     showLess: '显示更少',
+    submitting: '提交中...',
 }

@@ -5,7 +5,7 @@ import type {
     VideoCollectionResponse,
     VideoFilters,
 } from '@/features/core/types/video.types.ts'
-import type { CommentCollectionResponse } from '@/features/core/types/video-comment.types.ts'
+import type { CommentCollectionResponse, Comment } from '@/features/core/types/video-comment.types.ts'
 
 
 /**
@@ -57,6 +57,17 @@ class VideoService {
      */
     async getComments(videoId: string | number): Promise<CommentCollectionResponse> {
         const response = await apiClient.get<CommentCollectionResponse>(`/api/videos/${videoId}/comments`)
+        return response.data
+    }
+
+    /**
+     * Crée un nouveau commentaire
+     */
+    async createComment(videoId: string | number, content: string): Promise<Comment> {
+        const response = await apiClient.post<Comment>('/api/video_comments', {
+            video: `/api/videos/${videoId}`,
+            content
+        })
         return response.data
     }
 

@@ -29,4 +29,5 @@ export default {
     limit: 'Limite',
     showMore: 'Mostra di più',
     showLess: 'Mostra meno',
+    submitting: 'Invio in corso...',
 }

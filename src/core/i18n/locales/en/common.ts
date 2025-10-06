@@ -29,4 +29,5 @@ export default {
     limit: 'Limit',
     showMore: 'Show more',
     showLess: 'Show less',
+    submitting: 'Submitting...',
 }
