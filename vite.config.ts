@@ -16,9 +16,9 @@ export default defineConfig({
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
 
       manifest: {
-        name: 'My Vue Application',
-        short_name: 'MyVueApp',
-        description: 'A fully-featured Vue 3 application with PWA capabilities',
+        name: 'VGR Youtube',
+        short_name: 'VGR Youtube',
+        description: 'Discover the largest video game records community. Over 1000 games, 15000 active players, 50000+ validated records. Browse rankings and submit your high scores.',
         theme_color: '#ffffff',
         background_color: '#ffffff',
         display: 'standalone',
